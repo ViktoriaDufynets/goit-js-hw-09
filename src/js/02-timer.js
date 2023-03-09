@@ -12,9 +12,9 @@ const refs = {
 };
 const startButton = document.querySelector('[data-start]');
 const allDate = document.querySelector('.timer');
-const allDateTimer = document.querySelector('.timer .value');
+const allDateTimer = document.querySelector('span.value'); //querySelector somehow doesn't work. don't know the reason
 startButton.disabled = true;
-let selectedDate = null; 
+let selectedDate = null;
 
 datePicker.addEventListener('click', dateCalendar);
 startButton.addEventListener('click', startСountdown);
@@ -31,16 +31,16 @@ const options = {
             {
              timeout: 3000,
             },
-          ); 
+          );
       } else {
-        startButton.disabled = false;
+           startButton.disabled = false;
            selectedDate = selectedDates[0];
            console.log(selectedDate);
       };
   },
 };
 
-function dateCalendar() {    
+function dateCalendar() {
 };
 dateCalendar();
 
@@ -52,20 +52,19 @@ function startСountdown() {
 dateCalendar();
 
 const timer = {
-    intervalId: null,    
+    intervalId: null,
     start() {
-        const startTime = selectedDate;
         this.intervalId = setInterval(() => {
-            const currentTime = Date.now();
-            const deltaTime = startTime - currentTime;
-            const time = convertMs(deltaTime);
-            updateClockFace(time);
+          const currentTime = Date.now();
+          const deltaTime = convertMs(selectedDate - currentTime);
+          console.log(deltaTime);
+            updateClockFace(deltaTime);
             allDateTimer.style.color = 'tomato';
-            if (deltaTime <= 0) {
+            if (deltaTime.seconds <= 0) {
                this.stop();
             };
         }, 1000);
-    },    
+    },
     stop() {
       clearInterval(this.intervalId);
     },
@@ -102,3 +101,7 @@ function convertMs(ms) {
 allDate.style.color = 'teal';
 allDate.style.fontSize = '28px';
 allDate.style.fontStyle = 'italic';
+
+
+
+
