@@ -14,7 +14,7 @@ const startButton = document.querySelector('[data-start]');
 const allDate = document.querySelector('.timer');
 const allDateTimer = document.querySelector('.timer .value');
 startButton.disabled = true;
-let selectedDate = null;
+let selectedDate = null; 
 
 datePicker.addEventListener('click', dateCalendar);
 startButton.addEventListener('click', startСountdown);
